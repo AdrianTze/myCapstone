@@ -1,5 +1,45 @@
+import DishCard from "./DishCard";
+import brushetta from "../assets/bruchetta.svg";
+import greekSalad from "../assets/greek salad.jpg";
+import lemonDessert from "../assets/lemon dessert.jpg";
+
+const specialDishes = [
+  {
+    imgPth: brushetta,
+    imgAlt: "An image of brushetta",
+    name: "Brushetta",
+    price: 13.99,
+    description:
+      "The famous greek salad of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons. ",
+  },
+  {
+    imgPth: greekSalad,
+    imgAlt: "An image of Greek Salad",
+    name: "Greek Salad",
+    price: 13.99,
+    description:
+      "The famous greek salad of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons. ",
+  },
+  {
+    imgPth: lemonDessert,
+    imgAlt: "An image of Lemon Dessert",
+    name: "Lemon Dessert",
+    price: 13.99,
+    description:
+      "The famous greek salad of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons. ",
+  },
+];
+
 const Special = () => {
-  return <section className="special"></section>;
+  return (
+    <section className="special">
+      <h1>Weekly Specials</h1>
+      <button>Online Menu</button>
+      {specialDishes.map((dish) => {
+        return <DishCard data={dish}></DishCard>;
+      })}
+    </section>
+  );
 };
 
 export default Special;
