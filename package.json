@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "^2.7.1",
+    "@fontsource/karla": "^5.0.4",
+    "@fontsource/markazi-text": "^5.0.4",
     "@mdi/js": "^7.2.96",
     "@mdi/react": "^1.6.1",
     "@testing-library/jest-dom": "^5.16.5",
