@@ -2,6 +2,7 @@ import DishCard from "./DishCard";
 import brushetta from "../assets/bruchetta.svg";
 import greekSalad from "../assets/greek salad.jpg";
 import lemonDessert from "../assets/lemon dessert.jpg";
+import { Button, HStack, Heading } from "@chakra-ui/react";
 
 const specialDishes = [
   {
@@ -33,11 +34,24 @@ const specialDishes = [
 const Special = () => {
   return (
     <section className="special">
-      <h1>Weekly Specials</h1>
-      <button>Online Menu</button>
-      {specialDishes.map((dish) => {
-        return <DishCard data={dish}></DishCard>;
-      })}
+      <HStack wrap={"wrap"} justifyContent={"space-between"} pb={"10"}>
+        <Heading
+          as={"h1"}
+          size={"2xl"}
+          color={"primary.100"}
+          fontWeight={"medium"}
+        >
+          Weekly Specials
+        </Heading>
+        <Button color={"secondary.300"} bg={"primary.100"}>
+          Online Menu
+        </Button>
+      </HStack>
+      <HStack wrap={"wrap"} gap={"5"} justifyContent={"center"}>
+        {specialDishes.map((dish) => {
+          return <DishCard data={dish}></DishCard>;
+        })}
+      </HStack>
     </section>
   );
 };
