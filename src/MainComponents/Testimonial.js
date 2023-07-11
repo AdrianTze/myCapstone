@@ -1,3 +1,4 @@
+import { HStack, Heading } from "@chakra-ui/react";
 import UserReview from "./UserReview.js";
 
 const userData = [
@@ -19,14 +20,31 @@ const userData = [
     rating: 9,
     review: "I totally love the mexican food from Little Lemon restaurant",
   },
+  {
+    imgSrc: "https://bit.ly/tioluwani-kolawole",
+    fname: "Kola Tioluwani",
+    rating: 9,
+    review: "I totally love the mexican food from Little Lemon restaurant",
+  },
 ];
 
 const Testimonial = () => {
   return (
     <section className="testimonials">
-      {userData.map((user) => {
-        return <UserReview data={user}></UserReview>;
-      })}
+      <Heading
+        as={"h1"}
+        size={"2xl"}
+        pb={"10"}
+        color={"primary.200"}
+        fontWeight={"medium"}
+      >
+        Testimonials
+      </Heading>
+      <HStack wrap={"wrap"}>
+        {userData.map((user) => {
+          return <UserReview data={user}></UserReview>;
+        })}
+      </HStack>
     </section>
   );
 };
