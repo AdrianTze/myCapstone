@@ -25,7 +25,7 @@ function App() {
                   "testimonials"
                   "about"
                   "footer"`}
-            gridTemplateRows={"6rem 1fr 1fr 1fr 1fr 25rem"}
+            gridTemplateRows={"auto auto 1fr 1fr 1fr auto"}
             gridTemplateColumns={"1fr"}
             h="-webkit-fit-content"
             gap="0"
