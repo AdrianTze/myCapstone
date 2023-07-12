@@ -1,5 +1,6 @@
 import { ListItem, UnorderedList } from "@chakra-ui/react";
 import logo from "../assets/Logo.svg";
+import { Link } from "react-router-dom";
 
 const Nav = () => {
   const handleClick = (anchor) => () => {
@@ -20,24 +21,34 @@ const Nav = () => {
           <img src={logo} alt="Little Lemon Logo" width={"200px"} />
         </ListItem>
         <ListItem>
-          <a href="#Home">Home</a>
+          <Link to={"/"} className="nav-item" onClick={handleClick("header")}>
+            Home
+          </Link>
         </ListItem>
         <ListItem>
-          <a href="#About" onClick={handleClick("aboutus")}>
+          <Link to={"/"} className="nav-item" onClick={handleClick("aboutus")}>
             About
-          </a>
+          </Link>
         </ListItem>
         <ListItem>
-          <a href="#Menu">Menu</a>
+          <Link to={"/"} className="nav-item">
+            Menu
+          </Link>
         </ListItem>
         <ListItem>
-          <a href="#Reservation">Reservation</a>
+          <Link to={"/reservation"} className="nav-item">
+            Reservation
+          </Link>
         </ListItem>
         <ListItem>
-          <a href="#Order">Order Online</a>
+          <Link to={"/"} className="nav-item">
+            Order Online
+          </Link>
         </ListItem>
         <ListItem>
-          <a href="#Login">Login</a>
+          <Link to={"/"} className="nav-item">
+            Login
+          </Link>
         </ListItem>
       </UnorderedList>
     </nav>

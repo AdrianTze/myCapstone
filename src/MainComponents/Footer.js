@@ -1,4 +1,4 @@
-import { Link } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import logo from "../assets/Logo.svg";
 import facebookIcon from "../assets/socialMedia/facebook.png";
 import InstagramIcon from "../assets/socialMedia/instagram.png";
@@ -51,24 +51,38 @@ const Footer = () => {
         <img src={logo} alt="Little Lemon Logo" width={"300px"} />
         <ul>
           <li>
-            <a href="#Home">Home</a>
+            <Link to={"/"} className="nav-item" onClick={handleClick("header")}>
+              Home
+            </Link>
           </li>
           <li>
-            <a href="#About" onClick={handleClick("aboutus")}>
+            <Link
+              to={"/"}
+              className="nav-item"
+              onClick={handleClick("aboutus")}
+            >
               About
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#Menu">Menu</a>
+            <Link to={"/"} className="nav-item">
+              Menu
+            </Link>
           </li>
           <li>
-            <a href="#Reservation">Reservation</a>
+            <Link to={"/reservation"} className="nav-item">
+              Reservation
+            </Link>
           </li>
           <li>
-            <a href="#Order">Order Online</a>
+            <Link to={"/"} className="nav-item">
+              Order Online
+            </Link>
           </li>
           <li>
-            <a href="#Login">Login</a>
+            <Link to={"/"} className="nav-item">
+              Login
+            </Link>
           </li>
         </ul>
         <ul>
@@ -97,9 +111,9 @@ const Footer = () => {
           {socialMediaIcons.map((icon) => {
             return (
               <li>
-                <Link href={icon.url}>
+                <a href={icon.url}>
                   <img src={icon.src} alt={icon.alt} width={"30rem"} />
-                </Link>
+                </a>
               </li>
             );
           })}

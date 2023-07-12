@@ -4,7 +4,7 @@ import landingImage from "../assets/restaurant chef B.jpg";
 const Header = () => {
   return (
     <>
-      <header>
+      <header className="header">
         <VStack maxW={"lg"} alignItems={"flex-start"}>
           <Heading
             as={"h1"}
