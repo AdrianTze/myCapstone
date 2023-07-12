@@ -1,5 +1,6 @@
-import { HStack, Heading } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
 import UserReview from "./UserReview.js";
+import { Carousel } from "flowbite-react";
 
 const userData = [
   {
@@ -26,6 +27,24 @@ const userData = [
     rating: 9,
     review: "I totally love the mexican food from Little Lemon restaurant",
   },
+  {
+    imgSrc: "https://bit.ly/prosper-baba",
+    fname: "Prosper Otemuyiwa",
+    rating: 9,
+    review: "I totally love the mexican food from Little Lemon restaurant",
+  },
+  {
+    imgSrc: "https://bit.ly/code-beast",
+    fname: "Christian Nwamba",
+    rating: 9,
+    review: "I totally love the mexican food from Little Lemon restaurant",
+  },
+  {
+    imgSrc: "https://bit.ly/sage-adebayo",
+    fname: "Segun Adebayo",
+    rating: 9,
+    review: "I totally love the mexican food from Little Lemon restaurant",
+  },
 ];
 
 const Testimonial = () => {
@@ -34,17 +53,17 @@ const Testimonial = () => {
       <Heading
         as={"h1"}
         size={"2xl"}
-        pb={"10"}
         color={"primary.200"}
         fontWeight={"medium"}
       >
         Testimonials
       </Heading>
-      <HStack wrap={"wrap"}>
+
+      <Carousel className="w-96 py-12 pl-20">
         {userData.map((user) => {
           return <UserReview data={user}></UserReview>;
         })}
-      </HStack>
+      </Carousel>
     </section>
   );
 };
