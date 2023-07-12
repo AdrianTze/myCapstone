@@ -6,12 +6,13 @@ import Header from "./MainComponents/Header";
 import Special from "./MainComponents/Special";
 import Testimonial from "./MainComponents/Testimonial";
 import Footer from "./MainComponents/Footer";
-// import ContactForm from "./ReservationComponents/ContactForm";
-// import Payment from "./ReservationComponents/Payment";
-// import Reservation from "./ReservationComponents/Reservation";
+import ContactForm from "./ReservationComponents/ContactForm";
+import Payment from "./ReservationComponents/Payment";
+import Reservation from "./ReservationComponents/Reservation";
 
 import { ChakraProvider, Grid, GridItem } from "@chakra-ui/react";
 import Theme from "./Theme";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
@@ -35,18 +36,43 @@ function App() {
               <Nav></Nav>
             </GridItem>
             <main>
-              <GridItem pl="2" bg="primary.100" area={"header"}>
-                <Header></Header>
-              </GridItem>
-              <GridItem pl="2" bg="white.300" area={"special"}>
-                <Special></Special>
-              </GridItem>
-              <GridItem pl="2" bg="primary.100" area={"testimonials"}>
-                <Testimonial></Testimonial>
-              </GridItem>
-              <GridItem pl="2" bg="secondary.300" area={"about"}>
-                <AboutUs></AboutUs>
-              </GridItem>
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <>
+                      <GridItem pl="2" bg="primary.100" area={"header"}>
+                        <Header></Header>
+                      </GridItem>
+                      <GridItem pl="2" bg="white.300" area={"special"}>
+                        <Special></Special>
+                      </GridItem>
+                      <GridItem pl="2" bg="primary.100" area={"testimonials"}>
+                        <Testimonial></Testimonial>
+                      </GridItem>
+                      <GridItem pl="2" bg="secondary.300" area={"about"}>
+                        <AboutUs></AboutUs>
+                      </GridItem>
+                    </>
+                  }
+                />
+                <Route
+                  path="/reservation"
+                  element={
+                    <>
+                      <GridItem pl="2" bg="primary.100" area={"header"}>
+                        <Reservation></Reservation>
+                      </GridItem>
+                      <GridItem pl="2" bg="white.300" area={"special"}>
+                        <ContactForm></ContactForm>
+                      </GridItem>
+                      <GridItem pl="2" bg="primary.100" area={"testimonials"}>
+                        <Payment></Payment>
+                      </GridItem>
+                    </>
+                  }
+                />
+              </Routes>
             </main>
             <GridItem pl="2" bg="secondary.200" area={"footer"}>
               <Footer></Footer>
