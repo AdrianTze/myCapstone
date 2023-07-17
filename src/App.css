@@ -147,3 +147,37 @@ footer + p{
   text-align: center;
   padding: 0.5rem;
 }
+
+/* Reservation Component */
+.reservation{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  row-gap: 1rem;
+  padding: 3rem 6rem;
+}
+
+.reservation img{
+  border-radius: 0.5rem;
+}
+
+/* Contact Form Component */
+.contactform{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  row-gap: 1rem;
+  padding: 3rem 6rem;
+}
+
+/* Payment Component */
+.payment{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  row-gap: 1rem;
+  padding: 3rem 6rem;
+}

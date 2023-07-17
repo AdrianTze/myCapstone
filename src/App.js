@@ -63,7 +63,7 @@ function App() {
                       <GridItem pl="2" bg="primary.100" area={"header"}>
                         <Reservation></Reservation>
                       </GridItem>
-                      <GridItem pl="2" bg="white.300" area={"special"}>
+                      <GridItem pl="2" bg="secondary.300" area={"special"}>
                         <ContactForm></ContactForm>
                       </GridItem>
                       <GridItem pl="2" bg="primary.100" area={"testimonials"}>
