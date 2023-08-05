@@ -172,6 +172,16 @@ footer + p{
   padding: 3rem 6rem;
 }
 
+.contactform > form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  row-gap: 1rem;
+  width: max-content;
+}
+
 /* Payment Component */
 .payment{
   display: flex;
