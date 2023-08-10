@@ -1,18 +1,10 @@
 import { ListItem, UnorderedList } from "@chakra-ui/react";
 import logo from "../assets/Logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useSubmit } from "react-router-dom";
+import useScroll from "../customhooks/useScroll";
 
 const Nav = () => {
-  const handleClick = (anchor) => () => {
-    const className = `${anchor}`;
-    const element = document.getElementsByClassName(className)[0];
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
+  const { scroll } = useScroll();
 
   return (
     <nav>
@@ -21,12 +13,12 @@ const Nav = () => {
           <img src={logo} alt="Little Lemon Logo" width={"200px"} />
         </ListItem>
         <ListItem>
-          <Link to={"/"} className="nav-item" onClick={handleClick("header")}>
+          <Link to={"/"} className="nav-item" onClick={() => scroll("header")}>
             Home
           </Link>
         </ListItem>
         <ListItem>
-          <Link to={"/"} className="nav-item" onClick={handleClick("aboutus")}>
+          <Link to={"/"} className="nav-item" onClick={() => scroll("aboutus")}>
             About
           </Link>
         </ListItem>
