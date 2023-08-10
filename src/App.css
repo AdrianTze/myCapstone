@@ -149,7 +149,7 @@ footer + p{
 }
 
 /* Reservation Component */
-.reservation{
+.bookingform{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -157,7 +157,7 @@ footer + p{
   padding: 3rem 6rem;
 }
 
-.reservation img{
+.bookingform img{
   border-radius: 0.5rem;
 }
 
@@ -189,5 +189,5 @@ footer + p{
   align-content: center;
   flex-wrap: wrap;
   row-gap: 1rem;
-  padding: 3rem 6rem;
+  padding: 6rem 6rem;
 }

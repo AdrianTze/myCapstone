@@ -1,40 +1,37 @@
-import { Heading, VStack } from "@chakra-ui/react";
-import restaurantImage from "../assets/restaurant.jpg";
-
 import BookingForm from "./BookingForm";
+import { GridItem } from "@chakra-ui/react";
+import ContactForm from "./ContactForm";
+import Payment from "./Payment";
+import React from "react";
+import { useReducer } from "react";
+
+const updateTimes = (state, action) => {
+  return state;
+};
 
 const Reservation = () => {
+  const initializeTimes = [
+    "17:00",
+    "18:00",
+    "19:00",
+    "20:00",
+    "21:00",
+    "22:00",
+  ];
+  const [availableTimes, dispatch] = useReducer(updateTimes, initializeTimes);
+
   return (
-    <section className="reservation">
-      <VStack alignItems={"flex-start"}>
-        <Heading
-          as={"h1"}
-          color={"primary.200"}
-          fontWeight={"medium"}
-          size={"3xl"}
-        >
-          Reservation
-        </Heading>
-
-        <Heading
-          as={"h2"}
-          color={"secondary.300"}
-          fontWeight={"medium"}
-          size={"xl"}
-        >
-          Find a table for any occasion
-        </Heading>
-
-        <img
-          src={restaurantImage}
-          alt="A restaurant chef sprinkling garnish to the cuisine"
-          width={"350rem"}
-        />
-      </VStack>
-      <VStack>
-        <BookingForm></BookingForm>
-      </VStack>
-    </section>
+    <>
+      <GridItem pl="2" bg="primary.100" area={"header"}>
+        <BookingForm slot={availableTimes} dispatch={dispatch}></BookingForm>
+      </GridItem>
+      <GridItem pl="2" bg="secondary.300" area={"special"}>
+        <ContactForm></ContactForm>
+      </GridItem>
+      <GridItem pl="2" bg="primary.100" area={"testimonials"}>
+        <Payment></Payment>
+      </GridItem>
+    </>
   );
 };
 

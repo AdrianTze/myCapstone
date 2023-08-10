@@ -84,117 +84,111 @@ function Example() {
 const Payment = () => {
   return (
     <section className="payment">
-      <section className="reservation">
-        <VStack alignItems={"flex-start"}>
-          <Heading
-            as={"h1"}
-            color={"primary.200"}
-            fontWeight={"medium"}
-            size={"3xl"}
-            pb={"6"}
+      <VStack alignItems={"flex-start"}>
+        <Heading
+          as={"h1"}
+          color={"primary.200"}
+          fontWeight={"medium"}
+          size={"3xl"}
+          pb={"6"}
+        >
+          Payment
+        </Heading>
+
+        <Example />
+
+        <FormControl w={"md"} pr={"20"}>
+          <FormLabel htmlFor="cardno" color={"secondary.300"} fontSize={"lg"}>
+            Credit Card Number
+          </FormLabel>
+          <Input
+            variant={"filled"}
+            placeholder="XXXX-XXXX-XXXX-XXXX"
+            borderColor={"secondary.400"}
+            focusBorderColor="primary.200"
+            type="text"
+          />
+          <FormErrorMessage></FormErrorMessage>
+        </FormControl>
+        <FormControl w={"md"} pr={"20"}>
+          <FormLabel
+            htmlFor="cardholder"
+            color={"secondary.300"}
+            fontSize={"lg"}
           >
-            Payment
-          </Heading>
-
-          <Example />
-
-          <FormControl w={"md"} pr={"20"}>
-            <FormLabel htmlFor="cardno" color={"secondary.300"} fontSize={"lg"}>
-              Credit Card Number
+            Card Holder Name
+          </FormLabel>
+          <Input
+            variant={"filled"}
+            placeholder="Card Holder Name"
+            borderColor={"secondary.400"}
+            focusBorderColor="primary.200"
+            type="text"
+          />
+          <FormErrorMessage></FormErrorMessage>
+        </FormControl>
+        <HStack>
+          <FormControl w={"3xs"} pr={"10"}>
+            <FormLabel htmlFor="expiry" color={"secondary.300"} fontSize={"lg"}>
+              Expiry Date
             </FormLabel>
             <Input
               variant={"filled"}
-              placeholder="XXXX-XXXX-XXXX-XXXX"
+              placeholder="(MM/YY)"
               borderColor={"secondary.400"}
               focusBorderColor="primary.200"
               type="text"
             />
             <FormErrorMessage></FormErrorMessage>
           </FormControl>
-          <FormControl w={"md"} pr={"20"}>
-            <FormLabel
-              htmlFor="cardholder"
-              color={"secondary.300"}
-              fontSize={"lg"}
-            >
-              Card Holder Name
+          <FormControl w={"3xs"} pr={"16"}>
+            <FormLabel htmlFor="cvc" color={"secondary.300"} fontSize={"lg"}>
+              CVC
             </FormLabel>
-            <Input
-              variant={"filled"}
-              placeholder="Card Holder Name"
-              borderColor={"secondary.400"}
-              focusBorderColor="primary.200"
-              type="text"
-            />
-            <FormErrorMessage></FormErrorMessage>
-          </FormControl>
-          <HStack>
-            <FormControl w={"3xs"} pr={"10"}>
-              <FormLabel
-                htmlFor="expiry"
-                color={"secondary.300"}
-                fontSize={"lg"}
-              >
-                Expiry Date
-              </FormLabel>
+            <InputGroup>
               <Input
                 variant={"filled"}
-                placeholder="(MM/YY)"
+                placeholder="XXX"
                 borderColor={"secondary.400"}
                 focusBorderColor="primary.200"
                 type="text"
               />
-              <FormErrorMessage></FormErrorMessage>
-            </FormControl>
-            <FormControl w={"3xs"} pr={"16"}>
-              <FormLabel htmlFor="cvc" color={"secondary.300"} fontSize={"lg"}>
-                CVC
-              </FormLabel>
-              <InputGroup>
-                <Input
-                  variant={"filled"}
-                  placeholder="XXX"
-                  borderColor={"secondary.400"}
-                  focusBorderColor="primary.200"
-                  type="text"
-                />
-                <InputRightElement color={"secondary.100"}>
-                  <AiFillCreditCard size={30} />
-                </InputRightElement>
-              </InputGroup>
+              <InputRightElement color={"secondary.100"}>
+                <AiFillCreditCard size={30} />
+              </InputRightElement>
+            </InputGroup>
 
-              <FormErrorMessage></FormErrorMessage>
-            </FormControl>
+            <FormErrorMessage></FormErrorMessage>
+          </FormControl>
+        </HStack>
+      </VStack>
+      <Card maxW={"280"} bg={"secondary.300"}>
+        <CardBody>
+          <Image
+            src={bookingConfirmation}
+            alt={"A restaurant chef sprinkling garnish to the cuisine"}
+            borderRadius="lg"
+            width={"lg"}
+            height={"3xs"}
+          />
+          <Heading as={"h3"} fontSize={"xl"} py={"3"}>
+            Booking Fee
+          </Heading>
+        </CardBody>
+        <Divider />
+        <CardFooter flexDirection={"column"}>
+          <HStack width={"3xs"} justifyContent={"space-between"}>
+            <Text fontSize={"md"}>Deposit</Text>
+            <Text>$ 10.00</Text>
           </HStack>
-        </VStack>
-        <Card maxW={"280"} bg={"secondary.300"}>
-          <CardBody>
-            <Image
-              src={bookingConfirmation}
-              alt={"A restaurant chef sprinkling garnish to the cuisine"}
-              borderRadius="lg"
-              width={"lg"}
-              height={"3xs"}
-            />
-            <Heading as={"h3"} fontSize={"xl"} py={"3"}>
-              Booking Fee
+          <HStack width={"3xs"} justifyContent={"space-between"}>
+            <Heading as={"h2"} fontSize={"2xl"}>
+              Total
             </Heading>
-          </CardBody>
-          <Divider />
-          <CardFooter flexDirection={"column"}>
-            <HStack width={"3xs"} justifyContent={"space-between"}>
-              <Text fontSize={"md"}>Deposit</Text>
-              <Text>$ 10.00</Text>
-            </HStack>
-            <HStack width={"3xs"} justifyContent={"space-between"}>
-              <Heading as={"h2"} fontSize={"2xl"}>
-                Total
-              </Heading>
-              <Text>$ 10.00</Text>
-            </HStack>
-          </CardFooter>
-        </Card>
-      </section>
+            <Text>$ 10.00</Text>
+          </HStack>
+        </CardFooter>
+      </Card>
     </section>
   );
 };

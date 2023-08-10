@@ -6,8 +6,6 @@ import Header from "./MainComponents/Header";
 import Special from "./MainComponents/Special";
 import Testimonial from "./MainComponents/Testimonial";
 import Footer from "./MainComponents/Footer";
-import ContactForm from "./ReservationComponents/ContactForm";
-import Payment from "./ReservationComponents/Payment";
 import Reservation from "./ReservationComponents/Reservation";
 
 import { ChakraProvider, Grid, GridItem } from "@chakra-ui/react";
@@ -20,7 +18,7 @@ function App() {
   return (
     <ChakraProvider theme={Theme}>
       <AlertProvider>
-        <Fragment className="App">
+        <Fragment>
           <body>
             <Grid
               templateAreas={`"nav"
@@ -63,15 +61,7 @@ function App() {
                     path="/reservation"
                     element={
                       <>
-                        <GridItem pl="2" bg="primary.100" area={"header"}>
-                          <Reservation></Reservation>
-                        </GridItem>
-                        <GridItem pl="2" bg="secondary.300" area={"special"}>
-                          <ContactForm></ContactForm>
-                        </GridItem>
-                        <GridItem pl="2" bg="primary.100" area={"testimonials"}>
-                          <Payment></Payment>
-                        </GridItem>
+                        <Reservation></Reservation>
                       </>
                     }
                   />
