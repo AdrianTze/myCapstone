@@ -48,8 +48,8 @@ const Special = () => {
         </Button>
       </HStack>
       <HStack wrap={"wrap"} gap={"5"} justifyContent={"center"}>
-        {specialDishes.map((dish) => {
-          return <DishCard data={dish}></DishCard>;
+        {specialDishes.map((dish, index) => {
+          return <DishCard key={index} data={dish}></DishCard>;
         })}
       </HStack>
     </section>

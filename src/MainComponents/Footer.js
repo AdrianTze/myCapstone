@@ -108,9 +108,9 @@ const Footer = () => {
           <li>
             <p>Follow Us</p>
           </li>
-          {socialMediaIcons.map((icon) => {
+          {socialMediaIcons.map((icon, index) => {
             return (
-              <li>
+              <li key={index}>
                 <a href={icon.url}>
                   <img src={icon.src} alt={icon.alt} width={"30rem"} />
                 </a>
