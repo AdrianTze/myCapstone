@@ -69,10 +69,10 @@ function Example() {
 
   return (
     <HStack {...group}>
-      {options.map((value) => {
+      {options.map((value, index) => {
         const radio = getRadioProps({ value });
         return (
-          <RadioCard key={value} {...radio}>
+          <RadioCard key={index} {...radio}>
             {value}
           </RadioCard>
         );
