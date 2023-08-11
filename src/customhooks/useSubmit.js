@@ -23,7 +23,7 @@ const useSubmit = () => {
       }
       setResponse({
         type: "success",
-        message: `Thanks for your reservation ${data.firstName} ${data.lastName}! We will get back to you with an exact confirmation shortly!`,
+        message: `Thank you for your reservation ${data.firstName} ${data.lastName}! Look forward to meeting you!`,
       });
     } catch (error) {
       setResponse({
