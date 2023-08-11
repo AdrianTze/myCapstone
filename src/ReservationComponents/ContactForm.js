@@ -75,6 +75,7 @@ const ContactForm = () => {
     if (response.type === "success") {
       contactFormik.resetForm();
     }
+    // eslint-disable-next-line
   }, [response]);
 
   return (
