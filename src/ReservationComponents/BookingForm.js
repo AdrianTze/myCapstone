@@ -21,11 +21,22 @@ import React from "react";
 import { Heading, VStack } from "@chakra-ui/react";
 import restaurantOutdoor from "../assets/restaurant.jpg";
 import restaurantStandard from "../assets/restaurant_indoor.jpg";
-import useScroll from "../customhooks/useScroll";
+
+const images = [
+  {
+    imgSrc: restaurantOutdoor,
+    alt: "An image illustrating the outdoor seating environment in Little Lemon Restaurant",
+  },
+  {
+    imgSrc: restaurantStandard,
+    alt: "An image illustrating the standard indoor seating environment in Little Lemon Restaurant",
+  },
+];
 
 const BookingForm = (props) => {
   const availableTimes = props.slot;
   const dispatch = props.dispatch;
+  const onBooking = props.onBooking;
   const occasions = ["Birthday", "Engagement", "Aniversary", "Other"];
 
   // Form State
@@ -36,8 +47,6 @@ const BookingForm = (props) => {
   const [occasion, setOccasion] = React.useState(occasions[0]);
   const [seating, setSeating] = React.useState("Standard");
   const [showTooltip, setShowTooltip] = React.useState(false);
-
-  const { scroll } = useScroll();
 
   const handleSeatingChanged = (e) => {
     setSeating(e.target.value);
@@ -57,7 +66,7 @@ const BookingForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    scroll("contactform");
+    onBooking();
   };
 
   return (
@@ -82,8 +91,8 @@ const BookingForm = (props) => {
         </Heading>
 
         <img
-          src={seating == "Standard" ? restaurantStandard : restaurantOutdoor}
-          alt="A restaurant chef sprinkling garnish to the cuisine"
+          src={seating === "Standard" ? images[1].imgSrc : images[0].imgSrc}
+          alt={seating === "Standard" ? images[1].alt : images[0].alt}
           width={"350rem"}
         />
       </VStack>
@@ -113,7 +122,7 @@ const BookingForm = (props) => {
               }}
             />
             <FormErrorMessage></FormErrorMessage>
-          </FormControl>
+          </FormControl>{" "}
           <FormControl w={"md"} px={"20"}>
             <FormLabel
               htmlFor="res-time"
@@ -143,7 +152,6 @@ const BookingForm = (props) => {
             </Select>
             <FormErrorMessage></FormErrorMessage>
           </FormControl>
-
           <FormControl w={"md"} px={"20"}>
             <HStack>
               <FormLabel
@@ -173,7 +181,7 @@ const BookingForm = (props) => {
                 <SliderFilledTrack bg="primary.200" />
               </SliderTrack>
 
-              <Tooltip
+              {/* <Tooltip
                 hasArrow
                 bg="secondary.300"
                 color="primary.100"
@@ -181,12 +189,11 @@ const BookingForm = (props) => {
                 isOpen={showTooltip}
                 label={`${diners}`}
               >
-                <SliderThumb boxSize={6} />
-              </Tooltip>
+                <SliderThumb boxSize={4} />
+              </Tooltip> */}
             </Slider>
             <FormErrorMessage></FormErrorMessage>
           </FormControl>
-
           <FormControl w={"md"} px={"20"}>
             <FormLabel
               htmlFor="occasion"
@@ -216,7 +223,6 @@ const BookingForm = (props) => {
             </Select>
             <FormErrorMessage></FormErrorMessage>
           </FormControl>
-
           <FormControl w={"md"} px={"20"}>
             <FormLabel
               htmlFor="seating"
