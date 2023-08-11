@@ -75,24 +75,44 @@ test("Submit the booking form", () => {
   expect(handleBooking).toHaveBeenCalled();
 });
 
-test("Validate the behaviour of initializeTimes() and updateTimes() in Reservation component", () => {
+test("Validate the behaviour of initializeTimes() in Reservation component", async () => {
   render(
     <AlertProvider>
       <Reservation></Reservation>
     </AlertProvider>
   );
 
-  // initializeTimes() test
-  const initialTimes = ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"];
+  const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  await wait(3000);
+
+  let initializeTimesOptionElements = screen.getByLabelText("Time").children;
+
+  expect(initializeTimesOptionElements.length).toBeGreaterThan(0);
+
+  for (let option of initializeTimesOptionElements) {
+    expect(option).toBeInTheDocument();
+  }
+});
+
+test("Validate the behaviour of updateTimes() in Reservation component", async () => {
+  render(
+    <AlertProvider>
+      <Reservation></Reservation>
+    </AlertProvider>
+  );
+
+  const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  await wait(3000);
 
   const dateInput = screen.getByLabelText("Date");
 
   let initializeTimesOptionElements = screen.getByLabelText("Time").children;
 
-  initializeTimesOptionElements;
+  expect(initializeTimesOptionElements.length).toBeGreaterThan(0);
 
   for (let option of initializeTimesOptionElements) {
-    expect(initialTimes.includes(option.innerHTML)).toBeTruthy();
     expect(option).toBeInTheDocument();
   }
 
@@ -105,7 +125,22 @@ test("Validate the behaviour of initializeTimes() and updateTimes() in Reservati
   fireEvent.change(dateInput, { target: { value: changedValue } });
 
   for (let option of initializeTimesOptionElements) {
-    expect(initialTimes.includes(option.innerHTML)).toBeTruthy();
+    expect(option).not.toBeInTheDocument();
+  }
+
+  const spinnerHTML = screen.getByText("Loading...");
+
+  expect(spinnerHTML).toBeInTheDocument();
+
+  await wait(3000);
+
+  expect(spinnerHTML).not.toBeInTheDocument();
+
+  initializeTimesOptionElements = screen.getByLabelText("Time").children;
+
+  expect(initializeTimesOptionElements.length).toBeGreaterThan(0);
+
+  for (let option of initializeTimesOptionElements) {
     expect(option).toBeInTheDocument();
   }
-});
+}, 10000);
