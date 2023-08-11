@@ -18,6 +18,7 @@ import React, { useEffect } from "react";
 import useSubmit from "../customhooks/useSubmit";
 import { useAlertContext } from "../contextAPI/alertContext";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // /^[+]?01[0-9]{1}[-]?[0-9]{3}[-]?[0-9]{4}$/
 
@@ -25,6 +26,7 @@ const ContactForm = () => {
   const [show, setShow] = useState(false);
   const { isLoading, response, submit } = useSubmit();
   const { onOpen } = useAlertContext();
+  const navigate = useNavigate();
 
   const phoneRegex = new RegExp(
     /^[+]?[6]?01[0-9]{1}[-]?[0-9]{3}[-]?[0-9]{4}$/,
@@ -74,6 +76,7 @@ const ContactForm = () => {
 
     if (response.type === "success") {
       contactFormik.resetForm();
+      navigate("/reservation-confirmed");
     }
     // eslint-disable-next-line
   }, [response]);
