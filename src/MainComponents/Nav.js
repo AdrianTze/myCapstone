@@ -1,6 +1,6 @@
 import { ListItem, UnorderedList } from "@chakra-ui/react";
 import logo from "../assets/Logo.svg";
-import { Link, useSubmit } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useScroll from "../customhooks/useScroll";
 
 const Nav = () => {
