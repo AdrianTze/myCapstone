@@ -21,6 +21,7 @@ import React from "react";
 import { Heading, VStack } from "@chakra-ui/react";
 import restaurantOutdoor from "../assets/restaurant.jpg";
 import restaurantStandard from "../assets/restaurant_indoor.jpg";
+import TimeSlotInput from "./TimeSlotInput";
 
 const images = [
   {
@@ -66,7 +67,14 @@ const BookingForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onBooking();
+    let formData = {
+      date: date,
+      time: time,
+      diners: diners,
+      occasion: occasion,
+      seating: seating,
+    };
+    onBooking(formData);
   };
 
   return (
@@ -118,40 +126,20 @@ const BookingForm = (props) => {
               value={date}
               onChange={(e) => {
                 setDate(e.target.value);
-                dispatch({ date: e.target.value });
+                setTime("");
+                dispatch({
+                  type: "date-change",
+                  date: new Date(e.target.value),
+                });
               }}
             />
             <FormErrorMessage></FormErrorMessage>
-          </FormControl>{" "}
-          <FormControl w={"md"} px={"20"}>
-            <FormLabel
-              htmlFor="res-time"
-              color={"secondary.300"}
-              fontSize={"lg"}
-            >
-              Time
-            </FormLabel>
-            <Select
-              variant={"filled"}
-              borderColor={"secondary.400"}
-              focusBorderColor="primary.200"
-              name="res-time"
-              id="res-time"
-              value={time}
-              onChange={(e) => {
-                setTime(e.target.value);
-              }}
-            >
-              {availableTimes.map((time, index) => {
-                return (
-                  <option key={index} value={time}>
-                    {time}
-                  </option>
-                );
-              })}
-            </Select>
-            <FormErrorMessage></FormErrorMessage>
           </FormControl>
+          <TimeSlotInput
+            availableTimes={availableTimes}
+            time={time}
+            setTime={setTime}
+          ></TimeSlotInput>
           <FormControl w={"md"} px={"20"}>
             <HStack>
               <FormLabel
@@ -260,7 +248,7 @@ const BookingForm = (props) => {
             type="submit"
             color={"secondary.400"}
             bg={"primary.200"}
-            isDisabled={!getIsBookingFormValid()}
+            isDisabled={!availableTimes.length || !getIsBookingFormValid()}
           >
             Confirm
           </Button>
