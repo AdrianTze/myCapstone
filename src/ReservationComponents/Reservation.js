@@ -2,28 +2,76 @@ import BookingForm from "./BookingForm";
 import { GridItem } from "@chakra-ui/react";
 import ContactForm from "./ContactForm";
 import Payment from "./Payment";
-import React from "react";
+import React, { useState } from "react";
 import { useReducer } from "react";
 import useScroll from "../customhooks/useScroll";
-
-const updateTimes = (state, action) => {
-  console.log(state);
-  return state;
-};
-
-const initializeTimes = () => {
-  return ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"];
-};
+import { fetchAPI, submitAPI } from "../utils/mockAPI";
 
 const Reservation = () => {
+  const [formData, setFormData] = useState({});
   const { scroll } = useScroll();
+  let initialTimes = [];
+  let changedDate = "";
 
-  const handleBooking = () => {
-    console.log("Booking Form Submitted");
-    scroll("contactform");
+  const handleBooking = (data) => {
+    if (submitAPI(data)) {
+      console.log(data);
+      setFormData({ ...formData, ...data });
+      scroll("contactform");
+    }
   };
 
-  const [availableTimes, dispatch] = useReducer(updateTimes, initializeTimes());
+  const handleUpdateTimes = (state, action) => {
+    // eslint-disable-next-line
+    switch (action.type) {
+      case "date-change":
+        changedDate = action.date;
+        return [];
+      case "available-times-retrieved":
+        return action.times;
+      case "initial-times-loaded":
+        return action.times;
+    }
+    throw Error(`Unknown action: ${action.type}`);
+  };
+
+  const initializeTimes = () => {
+    const today = new Date();
+    fetchAPI(today).then((response) => {
+      dispatch({ type: "initial-times-loaded", times: response });
+    });
+  };
+
+  const updateTimes = () => {
+    // only runs when the selected date changed
+    if (changedDate !== "") {
+      fetchAPI(changedDate).then((response) => {
+        dispatch({ type: "available-times-retrieved", times: response });
+      });
+    }
+  };
+
+  const [availableTimes, dispatch] = useReducer(
+    handleUpdateTimes,
+    initialTimes
+  );
+
+  React.useEffect(() => {
+    localStorage.setItem("date", formData.date);
+    localStorage.setItem("time", formData.time);
+    localStorage.setItem("diners", formData.diners);
+    localStorage.setItem("occasion", formData.occasion);
+    localStorage.setItem("seating", formData.seating);
+  }, [formData]);
+
+  React.useEffect(() => {
+    initializeTimes();
+  }, []);
+
+  React.useEffect(() => {
+    // eslint-disable-next-line
+    updateTimes();
+  }, [availableTimes]);
 
   return (
     <>
