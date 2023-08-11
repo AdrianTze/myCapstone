@@ -7,7 +7,7 @@ import { useReducer } from "react";
 import useScroll from "../customhooks/useScroll";
 import { fetchAPI, submitAPI } from "../utils/mockAPI";
 
-const Reservation = () => {
+const Reservation = ({ navigate }) => {
   const [formData, setFormData] = useState({});
   const { scroll } = useScroll();
   let initialTimes = [];
@@ -83,7 +83,7 @@ const Reservation = () => {
         ></BookingForm>
       </GridItem>
       <GridItem pl="2" bg="secondary.300" area={"special"}>
-        <ContactForm></ContactForm>
+        <ContactForm navigate={navigate}></ContactForm>
       </GridItem>
       <GridItem pl="2" bg="primary.100" area={"testimonials"}>
         <Payment></Payment>

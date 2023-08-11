@@ -15,6 +15,7 @@ import { AlertProvider } from "./contextAPI/alertContext";
 import Alert from "./MainComponents/Alert";
 
 function App() {
+  const navigate = useNavigate();
   return (
     <ChakraProvider theme={Theme}>
       <AlertProvider>
@@ -60,7 +61,7 @@ function App() {
                   path="/reservation"
                   element={
                     <>
-                      <Reservation></Reservation>
+                      <Reservation navigate={navigate}></Reservation>
                     </>
                   }
                 />
