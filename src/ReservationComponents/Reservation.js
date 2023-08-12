@@ -71,6 +71,7 @@ const Reservation = ({ navigate }) => {
   React.useEffect(() => {
     // eslint-disable-next-line
     updateTimes();
+    // eslint-disable-next-line
   }, [availableTimes]);
 
   return (
