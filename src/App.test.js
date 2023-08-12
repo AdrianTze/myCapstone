@@ -3,9 +3,28 @@ import BookingForm from "./ReservationComponents/BookingForm";
 import Header from "./MainComponents/Header";
 import Reservation from "./ReservationComponents/Reservation";
 import { AlertProvider } from "./contextAPI/alertContext";
+import { unmountComponentAtNode } from "react-dom";
+import { act } from "react-dom/test-utils";
+
+let container = null;
+const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+beforeEach(() => {
+  // setup a DOM element as a render target
+  container = document.createElement("div");
+  document.body.appendChild(container);
+});
+
+afterEach(() => {
+  // clean up on exiting
+  unmountComponentAtNode(container);
+  container.remove();
+  container = null;
+});
 
 test("Renders the Header Heading", () => {
-  render(<Header />);
+  act(() => {
+    render(<Header />, container);
+  });
 
   const headingElement = screen.getByText("Little Lemon");
   expect(headingElement).toBeInTheDocument();
@@ -24,9 +43,13 @@ test("Renders the BookingForm Element with static text", () => {
     "21:00",
     "22:00",
   ];
-  render(
-    <BookingForm slot={initializeTimes} dispatch={dispatch}></BookingForm>
-  );
+
+  act(() => {
+    render(
+      <BookingForm slot={initializeTimes} dispatch={dispatch}></BookingForm>,
+      container
+    );
+  });
 
   const headingElement = screen.getByText("Reservation");
   expect(headingElement).toBeInTheDocument();
@@ -61,13 +84,18 @@ test("Submit the booking form", () => {
     "21:00",
     "22:00",
   ];
-  render(
-    <BookingForm
-      slot={initializeTimes}
-      dispatch={dispatch}
-      onBooking={handleBooking}
-    ></BookingForm>
-  );
+
+  act(() => {
+    render(
+      <BookingForm
+        slot={initializeTimes}
+        dispatch={dispatch}
+        onBooking={handleBooking}
+      ></BookingForm>,
+      container
+    );
+  });
+
   const submitButton = screen.getByText("Confirm");
 
   fireEvent.click(submitButton);
@@ -76,13 +104,14 @@ test("Submit the booking form", () => {
 });
 
 test("Validate the behaviour of initializeTimes() in Reservation component", async () => {
-  render(
-    <AlertProvider>
-      <Reservation></Reservation>
-    </AlertProvider>
-  );
-
-  const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  act(() => {
+    render(
+      <AlertProvider>
+        <Reservation></Reservation>
+      </AlertProvider>,
+      container
+    );
+  });
 
   await wait(3000);
 
@@ -96,13 +125,14 @@ test("Validate the behaviour of initializeTimes() in Reservation component", asy
 });
 
 test("Validate the behaviour of updateTimes() in Reservation component", async () => {
-  render(
-    <AlertProvider>
-      <Reservation></Reservation>
-    </AlertProvider>
-  );
-
-  const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  act(() => {
+    render(
+      <AlertProvider>
+        <Reservation></Reservation>
+      </AlertProvider>,
+      container
+    );
+  });
 
   await wait(3000);
 
@@ -122,7 +152,9 @@ test("Validate the behaviour of updateTimes() in Reservation component", async (
 
   const changedValue = newDate.toISOString().split("T")[0];
 
-  fireEvent.change(dateInput, { target: { value: changedValue } });
+  act(() => {
+    fireEvent.change(dateInput, { target: { value: changedValue } });
+  });
 
   for (let option of initializeTimesOptionElements) {
     expect(option).not.toBeInTheDocument();
