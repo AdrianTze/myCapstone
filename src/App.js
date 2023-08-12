@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import React from "react";
 import "./App.css";
 import Nav from "./MainComponents/Nav";
 import AboutUs from "./MainComponents/AboutUs";
@@ -13,6 +13,7 @@ import Theme from "./Theme";
 import { Route, Routes } from "react-router-dom";
 import { AlertProvider } from "./contextAPI/alertContext";
 import Alert from "./MainComponents/Alert";
+import { useNavigate } from "react-router-dom";
 
 function App() {
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ function App() {
                   element={
                     <>
                       <GridItem pl="2" bg="primary.100" area={"header"}>
-                        <Header></Header>
+                        <Header navigate={navigate}></Header>
                       </GridItem>
                       <GridItem pl="2" bg="white.300" area={"special"}>
                         <Special></Special>

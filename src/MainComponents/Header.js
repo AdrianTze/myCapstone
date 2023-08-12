@@ -1,7 +1,7 @@
 import { Button, Heading, Text, VStack } from "@chakra-ui/react";
 import landingImage from "../assets/restaurant chef B.jpg";
 
-const Header = () => {
+const Header = ({ navigate }) => {
   return (
     <>
       <header className="header">
@@ -26,7 +26,13 @@ const Header = () => {
             We are a family owned Mediterranean restaurant, focused on
             traditional recipes, served with a modern twist
           </Text>
-          <Button color={"secondary.400"} bg={"primary.200"}>
+          <Button
+            color={"secondary.400"}
+            bg={"primary.200"}
+            onClick={() => {
+              navigate("/Reservation");
+            }}
+          >
             Reserve a table
           </Button>
         </VStack>
