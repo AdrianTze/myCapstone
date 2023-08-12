@@ -16,8 +16,8 @@ import useScroll from "../customhooks/useScroll";
 const BookingConfirmation = () => {
   const [bookedInfo, setBookedInfo] = React.useState({});
   const { scroll } = useScroll();
+  scroll("bookingConfirmation");
   React.useEffect(() => {
-    scroll("bookingConfirmation");
     if (localStorage.length !== 0) {
       setBookedInfo({
         ...bookedInfo,
@@ -37,7 +37,7 @@ const BookingConfirmation = () => {
         localStorage.clear();
       };
     }
-  }, []);
+  }, [bookedInfo]);
   return bookedInfo.date !== null ? (
     <Card
       direction={{ base: "column", sm: "row" }}
