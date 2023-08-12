@@ -60,8 +60,8 @@ const Testimonial = () => {
       </Heading>
 
       <Carousel className="w-96 py-12 pl-20">
-        {userData.map((user) => {
-          return <UserReview data={user}></UserReview>;
+        {userData.map((user, index) => {
+          return <UserReview key={index} data={user}></UserReview>;
         })}
       </Carousel>
     </section>
