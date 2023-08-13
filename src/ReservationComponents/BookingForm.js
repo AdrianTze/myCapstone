@@ -169,7 +169,7 @@ const BookingForm = (props) => {
                 <SliderFilledTrack bg="primary.200" />
               </SliderTrack>
 
-              {/* <Tooltip
+              <Tooltip
                 hasArrow
                 bg="secondary.300"
                 color="primary.100"
@@ -178,7 +178,7 @@ const BookingForm = (props) => {
                 label={`${diners}`}
               >
                 <SliderThumb boxSize={4} />
-              </Tooltip> */}
+              </Tooltip>
             </Slider>
             <FormErrorMessage></FormErrorMessage>
           </FormControl>
