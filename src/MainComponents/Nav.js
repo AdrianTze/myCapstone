@@ -23,7 +23,7 @@ const Nav = () => {
           </Link>
         </ListItem>
         <ListItem>
-          <Link to={"/"} className="nav-item">
+          <Link to={"/"} className="nav-item" onClick={() => scroll("special")}>
             Menu
           </Link>
         </ListItem>
